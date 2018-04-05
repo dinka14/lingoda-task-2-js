@@ -7,7 +7,7 @@ var browser = new webdriver.Builder()
     .build();
 
 function logTitle() {
-    browser.getTitle().then(function(title) {
+    browser.getTitle().then((title) => {
         console.log('Current Page Title: ' + title);
         assert.equal(title.toLowerCase().indexOf("amazon.de"), 0, "Title isn't equal to amazon.de");
     });
@@ -19,7 +19,7 @@ function handleFailure(err) {
 }
 
 function checkPageOpen() {
-    return browser.findElements(webdriver.By.css('[href="/ref=footer_logo"]')).then(function(result) {
+    return browser.findElements(webdriver.By.css('[href="/ref=footer_logo"]')).then((result) => {
         return result[0];
     });
 }
@@ -30,5 +30,4 @@ function closeBrowser() {
 
 browser.get('https://www.amazon.de/');
 console.log('open browser');
-
 browser.wait(checkPageOpen, 5000).then(logTitle).then(closeBrowser, handleFailure);
