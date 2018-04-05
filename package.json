@@ -1,0 +1,12 @@
+{
+  "name": "lingoda-task-2-js",
+  "version": "0.0.1",
+  "dependencies": {
+    "asserts": "^4.0.2",
+    "chai": "^4.1.2",
+    "expect": "^22.4.3",
+    "selenium-webdriver": "latest",
+    "wdio": "^2.0.0",
+    "webdriverio": "^4.12.0"
+  }
+}
