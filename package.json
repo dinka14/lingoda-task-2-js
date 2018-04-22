@@ -3,10 +3,15 @@
   "version": "0.0.1",
   "dependencies": {
     "asserts": "^4.0.2",
+    "by": "^0.2.3",
     "chai": "^4.1.2",
+    "element": "^0.1.4",
     "expect": "^22.4.3",
-    "selenium-webdriver": "4.0.0-alpha.1",
-    "wdio": "^2.0.0",
+    "html": "^1.0.0",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.8.0",
+    "selenium-webdriver": "^3.6.0",
+    "wdio": "^2.0.2",
     "webdriverio": "^4.12.0"
   }
 }
