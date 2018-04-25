@@ -1,6 +1,7 @@
 "use strict";
 
 var assert = require('assert');
+var expect = require('expect')
 var webdriver = require('selenium-webdriver');
 const until = require("selenium-webdriver/lib/until");
 var By = require("selenium-webdriver/lib/by");
@@ -13,7 +14,7 @@ var find_search_field = "twotabsearchtextbox";
 var search_string = "Batman comics\n";
 var find_first_item = "//ul[@id='s-results-list-atf']//li[@id='result_0']";
 var find_title = "//ul[@id='s-results-list-atf']//li[@id='result_0']//a[@class='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal']";
-
+var find_price = "//ul[@id='s-results-list-atf']//li[@id='result_0']//div[@class='a-fixed-left-grid-col a-col-right']//div[@class='a-row']//a[@class='a-link-normal a-text-normal']//span[@class='a-size-base a-color-price s-price a-text-bold']";
 
 function run() {
     browser.get('http://www.amazon.de/').then(() => {
@@ -32,11 +33,26 @@ function run() {
         title.then(elm => {
             console.log('Check that title contains "Batman" word');
             return elm.getText().then(text => {
-                console.log(text);
+                console.log('1st item title ' + text);
                 assert.ok(text.includes('Batman'), 'Title doesn\'t contain "Batman" word');
             });
         });
 
+
+        var price = browser.wait(until.elementLocated(By.By.xpath(find_price)), 10000);
+        price.then(elm => {
+            console.log('Check that price is above 0');
+            return elm.getText().then(text => {
+                console.log('price =' + text);
+                var float_price = Number((text.slice(text.indexOf('EUR') + 'EUR'.length)).replace(',', '.'));
+                console.log('float  =' + typeof float_price + " " + float_price);
+                if (float_price > 0) {
+                    console.log('Price is above 0. Test passed')
+                } else {
+                    console.log('Price is lower 0. Test failed')
+                }
+            });
+        });
 
         /*
         browser.findElements(webdriver.By.xpath(find_title)).then((elem) => {
