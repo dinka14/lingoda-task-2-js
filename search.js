@@ -1,7 +1,6 @@
 "use strict";
 
 var assert = require('assert');
-var expect = require('expect')
 var webdriver = require('selenium-webdriver');
 const until = require("selenium-webdriver/lib/until");
 var By = require("selenium-webdriver/lib/by");
@@ -46,11 +45,10 @@ function run() {
                 console.log('price =' + text);
                 var float_price = Number((text.slice(text.indexOf('EUR') + 'EUR'.length)).replace(',', '.'));
                 console.log('float  =' + typeof float_price + " " + float_price);
-                if (float_price > 0) {
-                    console.log('Price is above 0. Test passed')
-                } else {
-                    console.log('Price is lower 0. Test failed')
-                }
+                if (float_price > 0)
+                    console.log('Price is above 0. Test passed');
+                else
+                    throw new Error('Price is lower than 0. Test failed');
             });
         });
 
