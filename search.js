@@ -20,10 +20,10 @@ const find_search_field = "twotabsearchtextbox",
 
 
 function run() {
-    browser.get('http://www.amazon.de/').then(() => {
-        console.log('Open browser');
-        browser.wait(until.titleContains('Amazon.de'), 10000);
-
+        browser.get('http://www.amazon.de/').then(() => {
+            console.log('Open browser');
+            browser.wait(until.titleContains('Amazon.de'), 10000);
+        });
         console.log('Try to find ' + search_string);
         let query = browser.wait(until.elementLocated(By.By.id(find_search_field)), 10000);
         query.sendKeys(search_string);
@@ -91,9 +91,7 @@ function run() {
                 assert.equal(price_text, text, 'Prices of 1st item on first and second pages are not equal')
             })
         });
-
-        browser.close();
-    });
+    browser.close();
 }
 
 run();
